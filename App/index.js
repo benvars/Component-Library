@@ -1,2 +1,2 @@
-export default from './storybook';
-// its me
+import App from '../storybook';
+export default App;
