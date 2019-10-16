@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Tex, View } from 'react-native';
 
 import { storiesOf } from '@storybook/react-native';
 import { action } from '@storybook/addon-actions';
@@ -10,6 +10,7 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import Button from './Button';
 import CenterView from './CenterView';
 import Welcome from './Welcome';
+import ButtonDropdown from './ButtonDropdown';
 
 storiesOf('Welcome', module).add('to Storybook', () => (
 	<Welcome showApp={linkTo('Button')} />
@@ -38,3 +39,21 @@ storiesOf('Button', module)
 		),
 		{ notes: 'A very simple button component' }
 	);
+
+storiesOf('ButtonDropdown', module)
+	.addDecorator(getStory => (
+		<View
+			style={{
+				paddingTop: 200,
+				alignItems: 'center',
+				backgroundColor: '#F5FCFF',
+				flex: 1
+			}}
+		>
+			{getStory()}
+		</View>
+	))
+	.addDecorator(withKnobs)
+	.add('with text', () => (
+		<ButtonDropdown onPress={action('clicked-button')}></ButtonDropdown>
+	));
