@@ -11,6 +11,7 @@ import Button from './Button';
 import CenterView from './CenterView';
 import Welcome from './Welcome';
 import ButtonDropdown from './ButtonDropdown';
+import HeaderNavigation from './HeaderNavigation';
 
 storiesOf('Welcome', module).add('to Storybook', () => (
 	<Welcome showApp={linkTo('Button')} />
@@ -56,4 +57,22 @@ storiesOf('ButtonDropdown', module)
 	.addDecorator(withKnobs)
 	.add('with text', () => (
 		<ButtonDropdown onPress={action('clicked-button')}></ButtonDropdown>
+	));
+
+storiesOf('HeaderNavigation', module)
+	.addDecorator(getStory => (
+		<View
+			style={{
+				paddingTop: 200,
+				alignItems: 'center',
+				backgroundColor: '#999',
+				flex: 1
+			}}
+		>
+			{getStory()}
+		</View>
+	))
+	.addDecorator(withKnobs)
+	.add('with header names', () => (
+		<HeaderNavigation headerNames={['Flights', 'Rockets', 'Launches']} />
 	));
